@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6e33420853a372040896f56e7ec0020c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 218571
+  packageName: Old Revolver Model 1860
+  packageVersion: 1.0.0
+  assetPath: Assets/Sursson/WesternWeapons/GunSpring/Scripts/SpringUVController.cs
+  uploadId: 499048

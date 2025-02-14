@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5fb5c718e1ec9eb43960ed1d2b87dad5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 218571
+  packageName: Old Revolver Model 1860
+  packageVersion: 1.0.0
+  assetPath: Assets/Sursson/WesternWeapons/GunSpring/Materials/Mat_GunSpring_Old.mat
+  uploadId: 499048

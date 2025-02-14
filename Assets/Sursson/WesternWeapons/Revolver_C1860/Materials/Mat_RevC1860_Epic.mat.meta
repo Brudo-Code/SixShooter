@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7b372d0acb271e540a46d6e8c31febdb
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 218571
+  packageName: Old Revolver Model 1860
+  packageVersion: 1.0.0
+  assetPath: Assets/Sursson/WesternWeapons/Revolver_C1860/Materials/Mat_RevC1860_Epic.mat
+  uploadId: 499048
