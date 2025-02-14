@@ -512,27 +512,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerCamera: {fileID: 2098047152596383937}
   AudioSource: {fileID: 5737101902622966843}
-  GravityDownForce: 20
+  GravityDownForce: 10
   GroundCheckLayers:
     serializedVersion: 2
     m_Bits: 1
   GroundCheckDistance: 1
-  MaxSpeedOnGround: 13
-  MovementSharpnessOnGround: 15
-  MaxSpeedCrouchedRatio: 0.5
-  MaxSpeedInAir: 10
-  AccelerationSpeedInAir: 25
-  SprintSpeedModifier: 1.5
+  MaxSpeedOnGround: 3
+  MovementSharpnessOnGround: 6
+  MaxSpeedCrouchedRatio: 0.4
+  MaxSpeedInAir: 5
+  AccelerationSpeedInAir: 4
+  SprintSpeedModifier: 1.4
   KillHeight: -50
   RotationSpeed: 200
   AimingRotationMultiplier: 0.4
-  JumpForce: 9
+  JumpForce: 4.7
   CameraHeightRatio: 0.8
   CapsuleHeightStanding: 1.8
-  CapsuleHeightCrouching: 0.9
-  CrouchingSharpness: 15
-  FootstepSfxFrequency: 1
-  FootstepSfxFrequencyWhileSprinting: 1
+  CapsuleHeightCrouching: 1
+  CrouchingSharpness: 6
+  FootstepSfxFrequency: 0.4
+  FootstepSfxFrequencyWhileSprinting: 0.58
   FootstepSfx: {fileID: 8300000, guid: f404f8d3c2a4b4f48989fb1120e78fb8, type: 3}
   JumpSfx: {fileID: 8300000, guid: 13b59a14d34add64d84a623867546ff1, type: 3}
   LandSfx: {fileID: 8300000, guid: d0f1afed8fa916244af6ca73579ded67, type: 3}
