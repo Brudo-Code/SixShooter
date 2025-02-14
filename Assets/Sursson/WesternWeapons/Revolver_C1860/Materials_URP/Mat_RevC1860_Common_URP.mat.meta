@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dcafd2b588107db48aaecaf53c61d9d6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 218571
+  packageName: Old Revolver Model 1860
+  packageVersion: 1.0.0
+  assetPath: Assets/Sursson/WesternWeapons/Revolver_C1860/Materials_URP/Mat_RevC1860_Common_URP.mat
+  uploadId: 499048
