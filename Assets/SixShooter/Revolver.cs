@@ -4,16 +4,42 @@ using UnityEngine;
 
 public class Revolver : MonoBehaviour
 {
+	[Serializable]
 	public class Chamber
 	{
-		public bool HasCartridge;
-		public Cartridge Cartridge;
+		private bool hasCartridge;
+		public bool HasCartridge => hasCartridge;
+
+		private Cartridge cartridge;
+		public Cartridge Cartridge => cartridge;
+
+		public void Empty()
+		{
+			this.hasCartridge = false;
+			this.cartridge = null;
+		}
+
+		public void Insert(Cartridge newCartridge)
+		{
+			this.hasCartridge = true;
+			this.cartridge = newCartridge;
+		}
 	}
 
 	private bool isTriggerDown = false;
+
 	private bool isEjectorRodDown = false;
 
-	private Chamber[] chambers = new Chamber[6];
+	private Chamber[] chambers = new Chamber[6] {new Chamber(), new Chamber(), new Chamber(), new Chamber(), new Chamber(), new Chamber()};
+	
+	[SerializeField]
+	private GameObject bulletPrefab;
+
+	[SerializeField]
+	private Transform bulletOrigin;
+
+	[SerializeField]
+	private float muzzleVelocity = 237.0f;
 
 	private float cylinderRotation;
 	public float CylinderRotation
@@ -21,14 +47,15 @@ public class Revolver : MonoBehaviour
 		get => cylinderRotation;
 		set
 		{
-			cylinderRotation = value % 360;
+			cylinderRotation = Mathf.Repeat(value, 360);
 		}
 	}
 
 	public int FiringChamberIndex => Mathf.FloorToInt(CylinderRotation / 60);
-	public int LoadingChamberIndex => (FiringChamberIndex + 1) % 6;
+	public int LoadingChamberIndex => MathHelper.Mod(FiringChamberIndex + 1, 6);
 	public Chamber FiringChamber => chambers[FiringChamberIndex];
 	public Chamber LoadingChamber => chambers[LoadingChamberIndex];
+	public bool IsTriggerDown => isTriggerDown;
 
 	private float hammerDistance;
 	public float HammerDistance
@@ -60,9 +87,24 @@ public class Revolver : MonoBehaviour
 		}
 	}
 
-	private void OnTriggerDown()
+	public bool GetChamber(int index, out Chamber chamber)
+	{
+		chamber = new Chamber();
+
+		if (index < 0 || index >= chambers.Length)
+		{
+			return false;
+		}
+
+		chamber = chambers[index];
+		return true;
+	}
+
+	public void Trigger()
 	{
 		// Play trigger pull sound
+
+		isTriggerDown = true;
 
 		switch (CurrentHammerState)
 		{
@@ -79,15 +121,33 @@ public class Revolver : MonoBehaviour
 				HammerDistance = 0;
 				StrikeChamber();
 				break;
-
 		}
 
 		HammerDistance = 0;
 	}
 
+	public void ReleaseTrigger()
+	{
+		isTriggerDown = false;
+	}
+
+	public void PullEjectorRod()
+	{
+		if (!isEjectorRodDown)
+		{
+			OnEjectorRodDown();
+		}
+		isEjectorRodDown = true;
+	}
+
+	public void PushEjectorRod()
+	{
+		isEjectorRodDown = false;
+	}
+
 	private void OnEjectorRodDown()
 	{
-		if (LoadingChamber.HasCartridge)
+		if (!LoadingChamber.HasCartridge)
 		{
 			return;
 		}
@@ -97,11 +157,25 @@ public class Revolver : MonoBehaviour
 
 	private void EjectCartridge()
 	{
-		LoadingChamber.HasCartridge = false;
-		LoadingChamber.Cartridge = null;
+		LoadingChamber.Empty();
 	}
 
-	private void PullHammer(float delta)
+	public void TryLoadCartridge(Cartridge cartridge)
+	{
+		if (LoadingChamber.HasCartridge)
+		{
+			return;
+		}
+
+		LoadCartridge(cartridge);
+	}
+
+	private void LoadCartridge(Cartridge cartridge)
+	{
+		LoadingChamber.Insert(cartridge);
+	}
+
+	public void PullHammer(float delta)
 	{
 		delta = Mathf.Clamp01(delta);
 
@@ -116,7 +190,7 @@ public class Revolver : MonoBehaviour
 		}
 	}
 
-	private void ReleaseHammer()
+	public void ReleaseHammer()
 	{
 		if (!isTriggerDown)
 		{
@@ -148,6 +222,8 @@ public class Revolver : MonoBehaviour
 
 	private void Discharge()
 	{
+		GameObject newBullet = Instantiate(bulletPrefab, bulletOrigin);
+		newBullet.GetComponent<Rigidbody>().AddForce(bulletOrigin.forward * muzzleVelocity, ForceMode.VelocityChange);
 		FiringChamber.Cartridge.IsSpent = true;
 	}
 

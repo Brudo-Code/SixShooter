@@ -114,8 +114,7 @@ namespace Unity.FPS.Gameplay
                     return Input.GetButton(GameConstants.k_ButtonNameFire);
                 }
             }
-
-            return false;
+			return false;
         }
 
         public bool GetAimInputHeld()
@@ -132,7 +131,22 @@ namespace Unity.FPS.Gameplay
             return false;
         }
 
-        public bool GetSprintInputHeld()
+		public float GetCylinderInput()
+		{
+			return Input.mouseScrollDelta.y;
+		}
+
+		public bool GetHammerPullInputHeld()
+		{
+			return Input.GetKey(KeyCode.F);
+		}
+
+		public bool GetHammerReleased()
+		{
+			return Input.GetKeyUp(KeyCode.F);
+		}
+
+		public bool GetSprintInputHeld()
         {
             if (CanProcessInput())
             {

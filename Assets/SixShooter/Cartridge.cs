@@ -1,6 +1,6 @@
 using UnityEngine;
-
-public class Cartridge : MonoBehaviour
+[System.Serializable]
+public class Cartridge
 {
 	public bool IsSpent = false;
 }
